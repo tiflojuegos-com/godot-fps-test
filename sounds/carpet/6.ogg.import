@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/6.ogg-fcb0e6eee9584f3322d1727dba6d798c.oggstr"
+
+[deps]
+
+source_file="res://sounds/carpet/6.ogg"
+dest_files=[ "res://.import/6.ogg-fcb0e6eee9584f3322d1727dba6d798c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

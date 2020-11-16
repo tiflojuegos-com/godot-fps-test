@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/desk.ogg-192eebea99556682f238fa0fcf10280f.oggstr"
+
+[deps]
+
+source_file="res://sounds/desk.ogg"
+dest_files=[ "res://.import/desk.ogg-192eebea99556682f238fa0fcf10280f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

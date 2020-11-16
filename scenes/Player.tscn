@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CSharpScript" id=1]
+resource_name = "Player"
+script/source = "using Godot;
+using System;
+
+public class Player : KinematicBody
+{
+    // Declare member variables here. Examples:
+    // private int a = 2;
+    // private string b = \"text\";
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        
+    }
+
+//  // Called every frame. 'delta' is the elapsed time since the previous frame.
+//  public override void _Process(float delta)
+//  {
+//      
+//  }
+}
+"
+
+[sub_resource type="CapsuleMesh" id=2]
+mid_height = 3.0
+
+[sub_resource type="CapsuleShape" id=3]
+height = 3.0
+
+[sub_resource type="CylinderShape" id=4]
+
+[node name="Player" type="KinematicBody"]
+script = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+visible = false
+shape = SubResource( 3 )
+
+[node name="Foot" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0 )
+shape = SubResource( 4 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0 )
+visible = false
+
+[node name="GroundCheck" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+enabled = true
+cast_to = Vector3( 0, -1.5, 0 )

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "kKpXLKdiY4DZDWFM8aliXgwRc6GQ0iaDvS6M4Kn8EPpT7giWKBbciU98UfAQqHvaC96OUoU+4eNmBRqalNKfQw==",
+  "success": true,
+  "projectFilePath": "D:\\games etc\\vs\\fps test\\UnnamedProject.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ali-b\\.nuget\\packages\\godottools.idemessaging\\1.1.1\\godottools.idemessaging.1.1.1.nupkg.sha512",
+    "C:\\Users\\ali-b\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,13 @@
+<Project Sdk="Godot.NET.Sdk/3.2.3">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="GodotTools.IdeMessaging" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="tfj_exploud_engine">
+      <HintPath>..\my first game godot\tfj_exploud_engine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
