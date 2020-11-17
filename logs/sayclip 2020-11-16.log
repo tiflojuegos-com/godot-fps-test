@@ -1127,3 +1127,39 @@
 2020-11-16 18:37:01.9344 ERROR problems excecuting a fmod function at disconnecting source DSP step ERR_INVALID_HANDLE
 2020-11-16 18:37:01.9593 ERROR problems excecuting a fmod function at disconnecting source DSP step ERR_INVALID_HANDLE
 2020-11-16 18:37:01.9593 ERROR problems excecuting a fmod function at releasing source dsp step ERR_INVALID_HANDLE
+2020-11-16 23:51:06.8103 INFO logSystem started at 16/11/2020 23:51:06
+2020-11-16 23:51:06.8393 INFO starting exploud engine
+2020-11-16 23:51:06.8753 DEBUG loading oculus spatializer with 1024 buffer lenght, and 4 num of samples 
+2020-11-16 23:51:06.8983 DEBUG plugins loaded
+2020-11-16 23:51:06.9043 INFO loading sounds.desk.ogg sound
+2020-11-16 23:51:06.9213 INFO sounds.desk.ogg sound loaded
+2020-11-16 23:51:06.9213 INFO loading sounds.duck.ogg sound
+2020-11-16 23:51:06.9333 INFO sounds.duck.ogg sound loaded
+2020-11-16 23:51:27.9340 ERROR problems excecuting a fmod function at disconnecting source DSP step ERR_CHANNEL_STOLEN
+2020-11-16 23:51:27.9340 ERROR problems excecuting a fmod function at releasing source dsp step ERR_INVALID_HANDLE
+2020-11-16 23:51:27.9340 ERROR problems excecuting a fmod function at disconnecting source DSP step ERR_INVALID_HANDLE
+2020-11-16 23:51:27.9340 ERROR problems excecuting a fmod function at releasing source dsp step ERR_INVALID_HANDLE
+2020-11-16 23:51:27.9340 ERROR problems excecuting a fmod function at disconnecting source DSP step ERR_INVALID_HANDLE
+2020-11-16 23:51:27.9490 ERROR problems excecuting a fmod function at disconnecting source DSP step ERR_INVALID_HANDLE
+2020-11-16 23:51:27.9490 ERROR problems excecuting a fmod function at releasing source dsp step ERR_INVALID_HANDLE
+2020-11-16 23:52:24.3142 INFO logSystem started at 16/11/2020 23:52:24
+2020-11-16 23:52:24.3462 INFO starting exploud engine
+2020-11-16 23:52:24.3792 DEBUG loading oculus spatializer with 1024 buffer lenght, and 4 num of samples 
+2020-11-16 23:52:24.4062 DEBUG plugins loaded
+2020-11-16 23:52:24.4062 INFO loading sounds.desk.ogg sound
+2020-11-16 23:52:24.4302 INFO sounds.desk.ogg sound loaded
+2020-11-16 23:52:24.4372 INFO loading sounds.duck.ogg sound
+2020-11-16 23:52:24.4372 INFO sounds.duck.ogg sound loaded
+2020-11-16 23:52:29.5322 ERROR problems excecuting a fmod function at disconnecting source DSP step ERR_INVALID_HANDLE
+2020-11-16 23:52:29.5322 ERROR problems excecuting a fmod function at releasing source dsp step ERR_INVALID_HANDLE
+2020-11-16 23:53:25.8196 INFO logSystem started at 16/11/2020 23:53:25
+2020-11-16 23:53:25.8465 INFO starting exploud engine
+2020-11-16 23:53:25.8765 DEBUG loading oculus spatializer with 1024 buffer lenght, and 4 num of samples 
+2020-11-16 23:53:25.8975 DEBUG plugins loaded
+2020-11-16 23:53:25.9035 INFO loading sounds.desk.ogg sound
+2020-11-16 23:53:25.9206 INFO sounds.desk.ogg sound loaded
+2020-11-16 23:53:25.9206 INFO loading sounds.duck.ogg sound
+2020-11-16 23:53:25.9316 INFO sounds.duck.ogg sound loaded
+2020-11-16 23:53:29.4135 ERROR problems excecuting a fmod function at disconnecting source DSP step ERR_INVALID_HANDLE
+2020-11-16 23:53:29.4315 ERROR problems excecuting a fmod function at disconnecting source DSP step ERR_INVALID_HANDLE
+2020-11-16 23:53:29.4315 ERROR problems excecuting a fmod function at releasing source dsp step ERR_INVALID_HANDLE
