@@ -48,4 +48,4 @@ depth = 1.0
 
 [node name="Player" parent="Room" instance=ExtResource( 3 )]
 
-[connection signal="walk" from="Room/Player" to="Room" method="playstep"]
+[connection signal="Walk" from="Room/Player" to="Room" method="playstep"]

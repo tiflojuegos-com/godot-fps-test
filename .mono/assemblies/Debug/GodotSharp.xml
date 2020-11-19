@@ -709,48 +709,48 @@
         </member>
         <member name="M:Godot.Color.ToAbgr32">
             <summary>
-            Returns the color's 32-bit integer in ABGR format
-            (each byte represents a component of the ABGR profile).
+            Returns the color converted to a 32-bit integer in ABGR
+            format (each byte represents a color channel).
             ABGR is the reversed version of the default format.
             </summary>
             <returns>An int representing this color in ABGR32 format.</returns>
         </member>
         <member name="M:Godot.Color.ToAbgr64">
             <summary>
-            Returns the color's 64-bit integer in ABGR format
-            (each byte represents a component of the ABGR profile).
+            Returns the color converted to a 64-bit integer in ABGR
+            format (each word represents a color channel).
             ABGR is the reversed version of the default format.
             </summary>
             <returns>An int representing this color in ABGR64 format.</returns>
         </member>
         <member name="M:Godot.Color.ToArgb32">
             <summary>
-            Returns the color's 32-bit integer in ARGB format
-            (each byte represents a component of the ARGB profile).
+            Returns the color converted to a 32-bit integer in ARGB
+            format (each byte represents a color channel).
             ARGB is more compatible with DirectX, but not used much in Godot.
             </summary>
             <returns>An int representing this color in ARGB32 format.</returns>
         </member>
         <member name="M:Godot.Color.ToArgb64">
             <summary>
-            Returns the color's 64-bit integer in ARGB format
-            (each word represents a component of the ARGB profile).
+            Returns the color converted to a 64-bit integer in ARGB
+            format (each word represents a color channel).
             ARGB is more compatible with DirectX, but not used much in Godot.
             </summary>
             <returns>A long representing this color in ARGB64 format.</returns>
         </member>
         <member name="M:Godot.Color.ToRgba32">
             <summary>
-            Returns the color's 32-bit integer in RGBA format
-            (each byte represents a component of the RGBA profile).
+            Returns the color converted to a 32-bit integer in RGBA
+            format (each byte represents a color channel).
             RGBA is Godot's default and recommended format.
             </summary>
             <returns>An int representing this color in RGBA32 format.</returns>
         </member>
         <member name="M:Godot.Color.ToRgba64">
             <summary>
-            Returns the color's 64-bit integer in RGBA format
-            (each word represents a component of the RGBA profile).
+            Returns the color converted to a 64-bit integer in RGBA
+            format (each word represents a color channel).
             RGBA is Godot's default and recommended format.
             </summary>
             <returns>A long representing this color in RGBA64 format.</returns>
@@ -764,7 +764,7 @@
         </member>
         <member name="M:Godot.Color.#ctor(System.Single,System.Single,System.Single,System.Single)">
             <summary>
-            Constructs a color from RGBA values on the range of 0 to 1.
+            Constructs a color from RGBA values, typically on the range of 0 to 1.
             </summary>
             <param name="r">The color's red component, typically on the range of 0 to 1.</param>
             <param name="g">The color's green component, typically on the range of 0 to 1.</param>
@@ -780,15 +780,15 @@
         </member>
         <member name="M:Godot.Color.#ctor(System.Int32)">
             <summary>
-            Constructs a color from a 32-bit integer
-            (each byte represents a component of the RGBA profile).
+            Constructs a color from a 32-bit integer in RGBA format
+            (each byte represents a color channel).
             </summary>
             <param name="rgba">The int representing the color.</param>
         </member>
         <member name="M:Godot.Color.#ctor(System.Int64)">
             <summary>
-            Constructs a color from a 64-bit integer
-            (each word represents a component of the RGBA profile).
+            Constructs a color from a 64-bit integer in RGBA format
+            (each word represents a color channel).
             </summary>
             <param name="rgba">The long representing the color.</param>
         </member>
@@ -3099,6 +3099,10 @@
             <summary>Find the first occurrence of a substring. Optionally, the search starting position can be passed.</summary>
             <returns>The starting position of the substring, or -1 if not found.</returns>
         </member>
+        <member name="M:Godot.StringExtensions.Find(System.String,System.Char,System.Int32,System.Boolean)">
+            <summary>Find the first occurrence of a char. Optionally, the search starting position can be passed.</summary>
+            <returns>The first instance of the char, or -1 if not found.</returns>
+        </member>
         <member name="M:Godot.StringExtensions.FindLast(System.String,System.String,System.Boolean)">
             <summary>Find the last occurrence of a substring.</summary>
             <returns>The starting position of the substring, or -1 if not found.</returns>
@@ -3134,10 +3138,32 @@
             <param name="bytes">A byte array of UTF-8 characters (a character may take up multiple bytes).</param>
             <returns>A string created from the bytes.</returns>
         </member>
+        <member name="M:Godot.StringExtensions.HexEncode(System.Byte)">
+            <summary>
+            Returns a hexadecimal representation of this byte as a string.
+            </summary>
+            <param name="bytes">The byte to encode.</param>
+            <returns>The hexadecimal representation of this byte.</returns>
+        </member>
+        <member name="M:Godot.StringExtensions.HexEncode(System.Byte[])">
+            <summary>
+            Returns a hexadecimal representation of this byte array as a string.
+            </summary>
+            <param name="bytes">The byte array to encode.</param>
+            <returns>The hexadecimal representation of this byte array.</returns>
+        </member>
         <member name="M:Godot.StringExtensions.Length(System.String)">
             <summary>
             Return the length of the string in characters.
             </summary>
+        </member>
+        <member name="M:Godot.StringExtensions.LStrip(System.String,System.String)">
+            <summary>
+            Returns a copy of the string with characters removed from the left.
+            </summary>
+            <param name="instance">The string to remove characters from.</param>
+            <param name="chars">The characters to be removed.</param>
+            <returns>A copy of the string with characters removed from the left.</returns>
         </member>
         <member name="M:Godot.StringExtensions.ExprMatch(System.String,System.String,System.Boolean)">
             <summary>
@@ -3153,6 +3179,14 @@
             <summary>
             Do a simple case insensitive expression match, using ? and * wildcards (see [method expr_match]).
             </summary>
+        </member>
+        <member name="M:Godot.StringExtensions.RStrip(System.String,System.String)">
+            <summary>
+            Returns a copy of the string with characters removed from the right.
+            </summary>
+            <param name="instance">The string to remove characters from.</param>
+            <param name="chars">The characters to be removed.</param>
+            <returns>A copy of the string with characters removed from the right.</returns>
         </member>
         <member name="T:Godot.Transform">
              <summary>
@@ -6069,10 +6103,10 @@
             <para><code>
             var err = method_that_returns_error()
             if err != OK:
-                print("Failure!)
+                print("Failure!")
             # Or, equivalent:
             if err:
-                print("Still failing!)
+                print("Still failing!")
             </code></para>
             </summary>
         </member>
@@ -10137,6 +10171,7 @@
         <member name="T:Godot.AtlasTexture">
             <summary>
             <para><see cref="T:Godot.Texture"/> resource aimed at managing big textures files that pack multiple smaller textures. Consists of a <see cref="T:Godot.Texture"/>, a margin that defines the border width, and a region that defines the actual area of the AtlasTexture.</para>
+            <para>Note: AtlasTextures don't support repetition. The  and  flags are ignored when using an AtlasTexture.</para>
             </summary>
         </member>
         <member name="P:Godot.AtlasTexture.Atlas">
@@ -13488,6 +13523,13 @@
         <member name="M:Godot.Camera.UnprojectPosition(Godot.Vector3)">
             <summary>
             <para>Returns the 2D coordinate in the <see cref="T:Godot.Viewport"/> rectangle that maps to the given 3D point in worldspace.</para>
+            <para>Note: When using this to position GUI elements over a 3D viewport, use <see cref="M:Godot.Camera.IsPositionBehind(Godot.Vector3)"/> to prevent them from appearing if the 3D point is behind the camera:</para>
+            <para><code>
+            # This code block is part of a script that inherits from Spatial.
+            # `control` is a reference to a node inheriting from Control.
+            control.visible = not get_viewport().get_camera().is_position_behind(global_transform.origin)
+            control.rect_position = get_viewport().get_camera().unproject_position(global_transform.origin)
+            </code></para>
             </summary>
         </member>
         <member name="M:Godot.Camera.IsPositionBehind(Godot.Vector3)">
@@ -15036,7 +15078,7 @@
         </member>
         <member name="T:Godot.ColorRect">
             <summary>
-            <para>Displays a colored rectangle.</para>
+            <para>Displays a rectangle filled with a solid <see cref="P:Godot.ColorRect.Color"/>. If you need to display the border alone, consider using <see cref="T:Godot.ReferenceRect"/> instead.</para>
             </summary>
         </member>
         <member name="P:Godot.ColorRect.Color">
@@ -15711,6 +15753,15 @@
         <member name="P:Godot.Control.HintTooltip">
             <summary>
             <para>Changes the tooltip text. The tooltip appears when the user's mouse cursor stays idle over this control for a few moments, provided that the <see cref="P:Godot.Control.MouseFilter"/> property is not . You can change the time required for the tooltip to appear with <c>gui/timers/tooltip_delay_sec</c> option in Project Settings.</para>
+            <para>The tooltip popup will use either a default implementation, or a custom one that you can provide by overriding <see cref="M:Godot.Control._MakeCustomTooltip(System.String)"/>. The default tooltip includes a <see cref="T:Godot.PopupPanel"/> and <see cref="T:Godot.Label"/> whose theme properties can be customized using <see cref="T:Godot.Theme"/> methods with the <c>"TooltipPanel"</c> and <c>"TooltipLabel"</c> respectively. For example:</para>
+            <para><code>
+            var style_box = StyleBoxFlat.new()
+            style_box.set_bg_color(Color(1, 1, 0))
+            style_box.set_border_width_all(2)
+            # We assume here that the `theme` property has been assigned a custom Theme beforehand.
+            theme.set_stylebox("panel", "TooltipPanel", style_box)
+            theme.set_color("font_color", "TooltipLabel", Color(0, 1, 1))
+            </code></para>
             </summary>
         </member>
         <member name="P:Godot.Control.FocusNeighbourLeft">
@@ -15813,20 +15864,21 @@
         </member>
         <member name="M:Godot.Control._MakeCustomTooltip(System.String)">
             <summary>
-            <para>Virtual method to be implemented by the user. Returns a <see cref="T:Godot.Control"/> node that should be used as a tooltip instead of the default one. Use <c>for_text</c> parameter to determine what text the tooltip should contain (likely the contents of <see cref="P:Godot.Control.HintTooltip"/>).</para>
-            <para>The returned node must be of type <see cref="T:Godot.Control"/> or Control-derieved. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance, not e.g. a node from scene. When <c>null</c> or non-Control node is returned, the default tooltip will be used instead.</para>
+            <para>Virtual method to be implemented by the user. Returns a <see cref="T:Godot.Control"/> node that should be used as a tooltip instead of the default one. The <c>for_text</c> includes the contents of the <see cref="P:Godot.Control.HintTooltip"/> property.</para>
+            <para>The returned node must be of type <see cref="T:Godot.Control"/> or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance).When <c>null</c> or a non-Control node is returned, the default tooltip will be used instead.</para>
+            <para>The returned node will be added as child to a <see cref="T:Godot.PopupPanel"/>, so you should only provide the contents of that panel. That <see cref="T:Godot.PopupPanel"/> can be themed using <see cref="M:Godot.Theme.SetStylebox(System.String,System.String,Godot.StyleBox)"/> for the type <c>"TooltipPanel"</c> (see <see cref="P:Godot.Control.HintTooltip"/> for an example).</para>
             <para>Note: The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its <see cref="P:Godot.Control.RectMinSize"/> to some non-zero value.</para>
-            <para>Example of usage with custom-constructed node:</para>
+            <para>Example of usage with a custom-constructed node:</para>
             <para><code>
             func _make_custom_tooltip(for_text):
                 var label = Label.new()
                 label.text = for_text
                 return label
             </code></para>
-            <para>Example of usage with custom scene instance:</para>
+            <para>Example of usage with a custom scene instance:</para>
             <para><code>
             func _make_custom_tooltip(for_text):
-                var tooltip = preload("SomeTooltipScene.tscn").instance()
+                var tooltip = preload("res://SomeTooltipScene.tscn").instance()
                 tooltip.get_node("Label").text = for_text
                 return tooltip
             </code></para>
@@ -16641,22 +16693,22 @@
         </member>
         <member name="M:Godot.Curve2D.SetPointIn(System.Int32,Godot.Vector2)">
             <summary>
-            <para>Sets the position of the control point leading to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console.</para>
+            <para>Sets the position of the control point leading to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.</para>
             </summary>
         </member>
         <member name="M:Godot.Curve2D.GetPointIn(System.Int32)">
             <summary>
-            <para>Returns the position of the control point leading to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console, and returns <c>(0, 0)</c>.</para>
+            <para>Returns the position of the control point leading to the vertex <c>idx</c>. The returned position is relative to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console, and returns <c>(0, 0)</c>.</para>
             </summary>
         </member>
         <member name="M:Godot.Curve2D.SetPointOut(System.Int32,Godot.Vector2)">
             <summary>
-            <para>Sets the position of the control point leading out of the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console.</para>
+            <para>Sets the position of the control point leading out of the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.</para>
             </summary>
         </member>
         <member name="M:Godot.Curve2D.GetPointOut(System.Int32)">
             <summary>
-            <para>Returns the position of the control point leading out of the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console, and returns <c>(0, 0)</c>.</para>
+            <para>Returns the position of the control point leading out of the vertex <c>idx</c>. The returned position is relative to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console, and returns <c>(0, 0)</c>.</para>
             </summary>
         </member>
         <member name="M:Godot.Curve2D.RemovePoint(System.Int32)">
@@ -16769,22 +16821,22 @@
         </member>
         <member name="M:Godot.Curve3D.SetPointIn(System.Int32,Godot.Vector3)">
             <summary>
-            <para>Sets the position of the control point leading to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console.</para>
+            <para>Sets the position of the control point leading to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.</para>
             </summary>
         </member>
         <member name="M:Godot.Curve3D.GetPointIn(System.Int32)">
             <summary>
-            <para>Returns the position of the control point leading to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console, and returns <c>(0, 0, 0)</c>.</para>
+            <para>Returns the position of the control point leading to the vertex <c>idx</c>. The returned position is relative to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console, and returns <c>(0, 0, 0)</c>.</para>
             </summary>
         </member>
         <member name="M:Godot.Curve3D.SetPointOut(System.Int32,Godot.Vector3)">
             <summary>
-            <para>Sets the position of the control point leading out of the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console.</para>
+            <para>Sets the position of the control point leading out of the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.</para>
             </summary>
         </member>
         <member name="M:Godot.Curve3D.GetPointOut(System.Int32)">
             <summary>
-            <para>Returns the position of the control point leading out of the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console, and returns <c>(0, 0, 0)</c>.</para>
+            <para>Returns the position of the control point leading out of the vertex <c>idx</c>. The returned position is relative to the vertex <c>idx</c>. If the index is out of bounds, the function sends an error to the console, and returns <c>(0, 0, 0)</c>.</para>
             </summary>
         </member>
         <member name="M:Godot.Curve3D.RemovePoint(System.Int32)">
@@ -19311,6 +19363,7 @@
             <para>A <see cref="T:Godot.HTTPClient"/> should be reused between multiple requests or to connect to different hosts instead of creating one client per request. Supports SSL and SSL server certificate verification. HTTP status codes in the 2xx range indicate success, 3xx redirection (i.e. "try again, but over here"), 4xx something was wrong with the request, and 5xx something went wrong on the server's side.</para>
             <para>For more information on HTTP, see https://developer.mozilla.org/en-US/docs/Web/HTTP (or read RFC 2616 to get it straight from the source: https://tools.ietf.org/html/rfc2616).</para>
             <para>Note: When performing HTTP requests from a project exported to HTML5, keep in mind the remote server may not allow requests from foreign origins due to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a>. If you host the server in question, you should modify its backend to allow requests from foreign origins by adding the <c>Access-Control-Allow-Origin: *</c> HTTP header.</para>
+            <para>Note: SSL/TLS support is currently limited to TLS 1.0, TLS 1.1, and TLS 1.2. Attempting to connect to a TLS 1.3-only server will return an error.</para>
             </summary>
         </member>
         <member name="F:Godot.HTTPClient.Status.Disconnected">
@@ -19857,7 +19910,7 @@
                 # Note: Don't make simultaneous requests using a single HTTPRequest node.
                 # The snippet below is provided for reference only.
                 var body = {"name": "Godette"}
-                var error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
+                error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
                 if error != OK:
                     push_error("An error occurred in the HTTP request.")
             
@@ -19899,6 +19952,7 @@
                 texture_rect.texture = texture
             </code></para>
             <para>Note: When performing HTTP requests from a project exported to HTML5, keep in mind the remote server may not allow requests from foreign origins due to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a>. If you host the server in question, you should modify its backend to allow requests from foreign origins by adding the <c>Access-Control-Allow-Origin: *</c> HTTP header.</para>
+            <para>Note: SSL/TLS support is currently limited to TLS 1.0, TLS 1.1, and TLS 1.2. Attempting to connect to a TLS 1.3-only server will return an error.</para>
             </summary>
         </member>
         <member name="F:Godot.HTTPRequest.Result.Success">
@@ -19964,7 +20018,7 @@
         <member name="P:Godot.HTTPRequest.DownloadChunkSize">
             <summary>
             <para>The size of the buffer used and maximum bytes to read per iteration. See <see cref="P:Godot.HTTPClient.ReadChunkSize"/>.</para>
-            <para>Set this to a higher value (e.g. 65536 for 64 KiB) when downloading large files to achieve better speeds at the cost of memory.</para>
+            <para>Set this to a lower value (e.g. 4096 for 4 KiB) when downloading small files to decrease memory usage at the cost of download speeds.</para>
             </summary>
         </member>
         <member name="P:Godot.HTTPRequest.UseThreads">
@@ -20320,8 +20374,9 @@
         </member>
         <member name="T:Godot.Image">
             <summary>
-            <para>Native image datatype. Contains image data, which can be converted to a <see cref="T:Godot.Texture"/>, and several functions to interact with it. The maximum width and height for an <see cref="T:Godot.Image"/> are  and .</para>
-            <para>Note: The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images will fail to import.</para>
+            <para>Native image datatype. Contains image data which can be converted to an <see cref="T:Godot.ImageTexture"/> and provides commonly used image processing methods. The maximum width and height for an <see cref="T:Godot.Image"/> are  and .</para>
+            <para>An <see cref="T:Godot.Image"/> cannot be assigned to a <c>texture</c> property of an object directly (such as <see cref="T:Godot.Sprite"/>), and has to be converted manually to an <see cref="T:Godot.ImageTexture"/> first.</para>
+            <para>Note: The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images may fail to import.</para>
             </summary>
         </member>
         <member name="F:Godot.Image.MaxWidth">
@@ -20726,6 +20781,8 @@
         <member name="M:Godot.Image.Load(System.String)">
             <summary>
             <para>Loads an image from file <c>path</c>. See <a href="https://docs.godotengine.org/en/3.2/getting_started/workflow/assets/importing_images.html#supported-image-formats">Supported image formats</a> for a list of supported image formats and limitations.</para>
+            <para>Warning: This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the <c>user://</c> directory, and may not work in exported projects.</para>
+            <para>See also <see cref="T:Godot.ImageTexture"/> description for usage examples.</para>
             </summary>
         </member>
         <member name="M:Godot.Image.SavePng(System.String)">
@@ -20899,10 +20956,36 @@
             <para>Loads an image from the binary contents of a TGA file.</para>
             </summary>
         </member>
+        <member name="M:Godot.Image.LoadBmpFromBuffer(System.Byte[])">
+            <summary>
+            <para>Loads an image from the binary contents of a BMP file.</para>
+            <para>Note: Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.</para>
+            </summary>
+        </member>
         <member name="T:Godot.ImageTexture">
             <summary>
-            <para>A <see cref="T:Godot.Texture"/> based on an <see cref="T:Godot.Image"/>. Can be created from an <see cref="T:Godot.Image"/> with <see cref="M:Godot.ImageTexture.CreateFromImage(Godot.Image,System.UInt32)"/>.</para>
-            <para>Note: The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images will fail to import.</para>
+            <para>A <see cref="T:Godot.Texture"/> based on an <see cref="T:Godot.Image"/>. For an image to be displayed, an <see cref="T:Godot.ImageTexture"/> has to be created from it using the <see cref="M:Godot.ImageTexture.CreateFromImage(Godot.Image,System.UInt32)"/> method:</para>
+            <para><code>
+            var texture = ImageTexture.new()
+            var image = Image.new()
+            image.load("res://icon.png")
+            texture.create_from_image(image)
+            $Sprite.texture = texture
+            </code></para>
+            <para>This way, textures can be created at run-time by loading images both from within the editor and externally.</para>
+            <para>Warning: Prefer to load imported textures with <c>@GDScript.load</c> over loading them from within the filesystem dynamically with <see cref="M:Godot.Image.Load(System.String)"/>, as it may not work in exported projects:</para>
+            <para><code>
+            var texture = load("res://icon.png")
+            $Sprite.texture = texture
+            </code></para>
+            <para>This is because images have to be imported as <see cref="T:Godot.StreamTexture"/> first to be loaded with <c>@GDScript.load</c>. If you'd still like to load an image file just like any other <see cref="T:Godot.Resource"/>, import it as an <see cref="T:Godot.Image"/> resource instead, and then load it normally using the <c>@GDScript.load</c> method.</para>
+            <para>But do note that the image data can still be retrieved from an imported texture as well using the <see cref="M:Godot.Texture.GetData"/> method, which returns a copy of the data:</para>
+            <para><code>
+            var texture = load("res://icon.png")
+            var image : Image = texture.get_data()
+            </code></para>
+            <para>An <see cref="T:Godot.ImageTexture"/> is not meant to be operated from within the editor interface directly, and is mostly useful for rendering images on screen dynamically via code. If you need to generate images procedurally from within the editor, consider saving and importing images as custom texture resources implementing a new <see cref="!:Godot.EditorImportPlugin"/>.</para>
+            <para>Note: The maximum texture size is 16384×16384 pixels due to graphics hardware limitations.</para>
             </summary>
         </member>
         <member name="F:Godot.ImageTexture.StorageEnum.Raw">
@@ -20938,27 +21021,30 @@
         </member>
         <member name="M:Godot.ImageTexture.CreateFromImage(Godot.Image,System.UInt32)">
             <summary>
-            <para>Create a new <see cref="T:Godot.ImageTexture"/> from an <see cref="T:Godot.Image"/> with <c>flags</c> from <see cref="T:Godot.Texture.FlagsEnum"/>. An sRGB to linear color space conversion can take place, according to <see cref="T:Godot.Image.Format"/>.</para>
+            <para>Initializes the texture by allocating and setting the data from an <see cref="T:Godot.Image"/> with <c>flags</c> from <see cref="T:Godot.Texture.FlagsEnum"/>. An sRGB to linear color space conversion can take place, according to <see cref="T:Godot.Image.Format"/>.</para>
             </summary>
         </member>
         <member name="M:Godot.ImageTexture.GetFormat">
             <summary>
-            <para>Returns the format of the <see cref="T:Godot.ImageTexture"/>, one of <see cref="T:Godot.Image.Format"/>.</para>
+            <para>Returns the format of the texture, one of <see cref="T:Godot.Image.Format"/>.</para>
             </summary>
         </member>
         <member name="M:Godot.ImageTexture.Load(System.String)">
             <summary>
-            <para>Load an <see cref="T:Godot.ImageTexture"/> from a file path.</para>
+            <para>Loads an image from a file path and creates a texture from it.</para>
+            <para>Note: the method is deprecated and will be removed in Godot 4.0, use <see cref="M:Godot.Image.Load(System.String)"/> and <see cref="M:Godot.ImageTexture.CreateFromImage(Godot.Image,System.UInt32)"/> instead.</para>
             </summary>
         </member>
         <member name="M:Godot.ImageTexture.SetData(Godot.Image)">
             <summary>
-            <para>Sets the <see cref="T:Godot.Image"/> of this <see cref="T:Godot.ImageTexture"/>.</para>
+            <para>Replaces the texture's data with a new <see cref="T:Godot.Image"/>.</para>
+            <para>Note: The texture has to be initialized first with the <see cref="M:Godot.ImageTexture.CreateFromImage(Godot.Image,System.UInt32)"/> method before it can be updated. The new image dimensions, format, and mipmaps configuration should match the existing texture's image configuration, otherwise it has to be re-created with the <see cref="M:Godot.ImageTexture.CreateFromImage(Godot.Image,System.UInt32)"/> method.</para>
+            <para>Use this method over <see cref="M:Godot.ImageTexture.CreateFromImage(Godot.Image,System.UInt32)"/> if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.</para>
             </summary>
         </member>
         <member name="M:Godot.ImageTexture.SetSizeOverride(Godot.Vector2)">
             <summary>
-            <para>Resizes the <see cref="T:Godot.ImageTexture"/> to the specified dimensions.</para>
+            <para>Resizes the texture to the specified dimensions.</para>
             </summary>
         </member>
         <member name="T:Godot.ImmediateGeometry">
@@ -20967,6 +21053,7 @@
             <para>See also <see cref="T:Godot.ArrayMesh"/>, <see cref="T:Godot.MeshDataTool"/> and <see cref="T:Godot.SurfaceTool"/> for procedural geometry generation.</para>
             <para>Note: ImmediateGeometry3D is best suited to small amounts of mesh data that change every frame. It will be slow when handling large amounts of mesh data. If mesh data doesn't change often, use <see cref="T:Godot.ArrayMesh"/>, <see cref="T:Godot.MeshDataTool"/> or <see cref="T:Godot.SurfaceTool"/> instead.</para>
             <para>Note: Godot uses clockwise <a href="https://learnopengl.com/Advanced-OpenGL/Face-culling">winding order</a> for front faces of triangle primitive modes.</para>
+            <para>Note: In case of missing points when handling large amounts of mesh data, try increasing its buffer size limit under .</para>
             </summary>
         </member>
         <member name="M:Godot.ImmediateGeometry.Begin(Godot.Mesh.PrimitiveType,Godot.Texture)">
@@ -21736,6 +21823,11 @@
             <para>The InstancePlaceholder does not have a transform. This causes any child nodes to be positioned relatively to the Viewport from point (0,0), rather than their parent as displayed in the editor. Replacing the placeholder with a scene with a transform will transform children relatively to their parent again.</para>
             </summary>
         </member>
+        <member name="M:Godot.InstancePlaceholder.CreateInstance(System.Boolean,Godot.PackedScene)">
+            <summary>
+            <para>Not thread-safe. Use <see cref="M:Godot.Object.CallDeferred(System.String,System.Object[])"/> if calling from a thread.</para>
+            </summary>
+        </member>
         <member name="M:Godot.InstancePlaceholder.ReplaceByInstance(Godot.PackedScene)">
             <summary>
             <para>Replaces this placeholder by the scene handed as an argument, or the original scene if no argument is given. As for all resources, the scene is loaded only if it's not loaded already. By manually loading the scene beforehand, delays caused by this function can be avoided.</para>
@@ -21743,7 +21835,7 @@
         </member>
         <member name="M:Godot.InstancePlaceholder.GetInstancePath">
             <summary>
-            <para>Gets the path to the <see cref="T:Godot.PackedScene"/> resource file that is loaded by default when calling <see cref="M:Godot.InstancePlaceholder.ReplaceByInstance(Godot.PackedScene)"/>.</para>
+            <para>Gets the path to the <see cref="T:Godot.PackedScene"/> resource file that is loaded by default when calling <see cref="M:Godot.InstancePlaceholder.ReplaceByInstance(Godot.PackedScene)"/>. Not thread-safe. Use <see cref="M:Godot.Object.CallDeferred(System.String,System.Object[])"/> if calling from a thread.</para>
             </summary>
         </member>
         <member name="T:Godot.InterpolatedCamera">
@@ -23348,6 +23440,11 @@
             <para>Clears the current selection.</para>
             </summary>
         </member>
+        <member name="M:Godot.LineEdit.GetScrollOffset">
+            <summary>
+            <para>Returns the scroll offset due to <see cref="P:Godot.LineEdit.CaretPosition"/>, as a number of characters.</para>
+            </summary>
+        </member>
         <member name="M:Godot.LineEdit.AppendAtCursor(System.String)">
             <summary>
             <para>Adds <c>text</c> after the cursor. If the resulting value is longer than <see cref="P:Godot.LineEdit.MaxLength"/>, nothing happens.</para>
@@ -23980,14 +24077,21 @@
             <para>To use MeshDataTool, load a mesh with <see cref="M:Godot.MeshDataTool.CreateFromSurface(Godot.ArrayMesh,System.Int32)"/>. When you are finished editing the data commit the data to a mesh with <see cref="M:Godot.MeshDataTool.CommitToSurface(Godot.ArrayMesh)"/>.</para>
             <para>Below is an example of how MeshDataTool may be used.</para>
             <para><code>
+            var mesh = ArrayMesh.new()
+            mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, CubeMesh.new().get_mesh_arrays())
             var mdt = MeshDataTool.new()
             mdt.create_from_surface(mesh, 0)
             for i in range(mdt.get_vertex_count()):
                 var vertex = mdt.get_vertex(i)
-                ...
+                # In this example we extend the mesh by one unit, which results in seperated faces as it is flat shaded.
+                vertex += mdt.get_vertex_normal(i)
+                # Save your change.
                 mdt.set_vertex(i, vertex)
             mesh.surface_remove(0)
             mdt.commit_to_surface(mesh)
+            var mi = MeshInstance.new()
+            mi.mesh = mesh
+            add_child(mi)
             </code></para>
             <para>See also <see cref="T:Godot.ArrayMesh"/>, <see cref="T:Godot.ImmediateGeometry"/> and <see cref="T:Godot.SurfaceTool"/> for procedural geometry generation.</para>
             <para>Note: Godot uses clockwise <a href="https://learnopengl.com/Advanced-OpenGL/Face-culling">winding order</a> for front faces of triangle primitive modes.</para>
@@ -25128,17 +25232,19 @@
         </member>
         <member name="F:Godot.NinePatchRect.AxisStretchMode.Stretch">
             <summary>
-            <para>Doesn't do anything at the time of writing.</para>
+            <para>Stretches the center texture across the NinePatchRect. This may cause the texture to be distorted.</para>
             </summary>
         </member>
         <member name="F:Godot.NinePatchRect.AxisStretchMode.Tile">
             <summary>
-            <para>Doesn't do anything at the time of writing.</para>
+            <para>Repeats the center texture across the NinePatchRect. This won't cause any visible distortion. The texture must be seamless for this to work without displaying artifacts between edges.</para>
+            <para>Note: Only supported when using the GLES3 renderer. When using the GLES2 renderer, this will behave like .</para>
             </summary>
         </member>
         <member name="F:Godot.NinePatchRect.AxisStretchMode.TileFit">
             <summary>
-            <para>Doesn't do anything at the time of writing.</para>
+            <para>Repeats the center texture across the NinePatchRect, but will also stretch the texture to make sure each tile is visible in full. This may cause the texture to be distorted, but less than . The texture must be seamless for this to work without displaying artifacts between edges.</para>
+            <para>Note: Only supported when using the GLES3 renderer. When using the GLES2 renderer, this will behave like .</para>
             </summary>
         </member>
         <member name="P:Godot.NinePatchRect.Texture">
@@ -25178,12 +25284,12 @@
         </member>
         <member name="P:Godot.NinePatchRect.AxisStretchHorizontal">
             <summary>
-            <para>Doesn't do anything at the time of writing.</para>
+            <para>The stretch mode to use for horizontal stretching/tiling. See <see cref="T:Godot.NinePatchRect.AxisStretchMode"/> for possible values.</para>
             </summary>
         </member>
         <member name="P:Godot.NinePatchRect.AxisStretchVertical">
             <summary>
-            <para>Doesn't do anything at the time of writing.</para>
+            <para>The stretch mode to use for vertical stretching/tiling. See <see cref="T:Godot.NinePatchRect.AxisStretchMode"/> for possible values.</para>
             </summary>
         </member>
         <member name="M:Godot.NinePatchRect.SetPatchMargin(Godot.Margin,System.Int32)">
@@ -25890,6 +25996,18 @@
         <member name="M:Godot.PacketPeerUDP.Wait">
             <summary>
             <para>Waits for a packet to arrive on the listening port. See <see cref="M:Godot.PacketPeerUDP.Listen(System.Int32,System.String,System.Int32)"/>.</para>
+            <para>Note: <see cref="M:Godot.PacketPeerUDP.Wait"/> can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:</para>
+            <para><code>
+            # Server
+            socket.set_dest_address("127.0.0.1", 789)
+            socket.put_packet("Time to stop".to_ascii())
+            
+            # Client
+            while socket.wait() == OK:
+                var data = socket.get_packet().get_string_from_ascii()
+                if data == "Time to stop":
+                    return
+            </code></para>
             </summary>
         </member>
         <member name="M:Godot.PacketPeerUDP.IsListening">
@@ -30500,6 +30618,7 @@
             <summary>
             <para>The seed used by the random number generator. A given seed will give a reproducible sequence of pseudo-random numbers.</para>
             <para>Note: The RNG does not have an avalanche effect, and can output similar random streams given similar seeds. Consider using a hash function to improve your seed quality if they're sourced externally.</para>
+            <para>Note: The default value of this property is pseudo-random, and changes when calling <see cref="M:Godot.RandomNumberGenerator.Randomize"/>. The <c>0</c> value documented here is a placeholder, and not the actual default seed.</para>
             </summary>
         </member>
         <member name="M:Godot.RandomNumberGenerator.Randi">
@@ -30879,12 +30998,17 @@
         </member>
         <member name="T:Godot.ReferenceRect">
             <summary>
-            <para>A rectangle box that displays only a <see cref="P:Godot.ReferenceRect.BorderColor"/> border color around its rectangle. <see cref="T:Godot.ReferenceRect"/> has no fill <see cref="T:Godot.Color"/>.</para>
+            <para>A rectangle box that displays only a <see cref="P:Godot.ReferenceRect.BorderColor"/> border color around its rectangle. <see cref="T:Godot.ReferenceRect"/> has no fill <see cref="T:Godot.Color"/>. If you need to display a rectangle filled with a solid color, consider using <see cref="T:Godot.ColorRect"/> instead.</para>
             </summary>
         </member>
         <member name="P:Godot.ReferenceRect.BorderColor">
             <summary>
             <para>Sets the border <see cref="T:Godot.Color"/> of the <see cref="T:Godot.ReferenceRect"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Godot.ReferenceRect.BorderWidth">
+            <summary>
+            <para>Sets the border width of the <see cref="T:Godot.ReferenceRect"/>. The border grows both inwards and outwards with respect to the rectangle box.</para>
             </summary>
         </member>
         <member name="P:Godot.ReferenceRect.EditorOnly">
@@ -35877,6 +36001,7 @@
         <member name="M:Godot.SurfaceTool.AddColor(Godot.Color)">
             <summary>
             <para>Specifies a <see cref="T:Godot.Color"/> for the next vertex to use.</para>
+            <para>Note: The material must have <see cref="P:Godot.SpatialMaterial.VertexColorUseAsAlbedo"/> enabled for the vertex color to be visible.</para>
             </summary>
         </member>
         <member name="M:Godot.SurfaceTool.AddNormal(Godot.Vector3)">
@@ -36141,7 +36266,7 @@
         </member>
         <member name="T:Godot.Tabs">
             <summary>
-            <para>Simple tabs control, similar to <see cref="T:Godot.TabContainer"/> but is only in charge of drawing tabs, not interact with children.</para>
+            <para>Simple tabs control, similar to <see cref="T:Godot.TabContainer"/> but is only in charge of drawing tabs, not interacting with children.</para>
             </summary>
         </member>
         <member name="F:Godot.Tabs.CloseButtonDisplayPolicy.ShowNever">
@@ -36625,7 +36750,7 @@
         </member>
         <member name="M:Godot.TextEdit.GetWordUnderCursor">
             <summary>
-            <para>Returns a <see cref="T:System.String"/> text with the word under the mouse cursor location.</para>
+            <para>Returns a <see cref="T:System.String"/> text with the word under the caret (text cursor) location.</para>
             </summary>
         </member>
         <member name="M:Godot.TextEdit.Search(System.String,System.UInt32,System.Int32,System.Int32)">
@@ -36751,6 +36876,7 @@
             <para>A texture works by registering an image in the video hardware, which then can be used in 3D models or 2D <see cref="T:Godot.Sprite"/> or GUI <see cref="T:Godot.Control"/>.</para>
             <para>Textures are often created by loading them from a file. See <c>@GDScript.load</c>.</para>
             <para><see cref="T:Godot.Texture"/> is a base for other resources. It cannot be used directly.</para>
+            <para>Note: The maximum texture size is 16384×16384 pixels due to graphics hardware limitations. Larger textures may fail to import.</para>
             </summary>
         </member>
         <member name="F:Godot.Texture.FlagsEnum.Default">
@@ -36766,6 +36892,7 @@
         <member name="F:Godot.Texture.FlagsEnum.Repeat">
             <summary>
             <para>Repeats the texture (instead of clamp to edge).</para>
+            <para>Note: Ignored when using an <see cref="T:Godot.AtlasTexture"/> as these don't support repetition.</para>
             </summary>
         </member>
         <member name="F:Godot.Texture.FlagsEnum.Filter">
@@ -36787,6 +36914,7 @@
         <member name="F:Godot.Texture.FlagsEnum.MirroredRepeat">
             <summary>
             <para>Repeats the texture with alternate sections mirrored.</para>
+            <para>Note: Ignored when using an <see cref="T:Godot.AtlasTexture"/> as these don't support repetition.</para>
             </summary>
         </member>
         <member name="F:Godot.Texture.FlagsEnum.VideoSurface">
@@ -37480,7 +37608,7 @@
         </member>
         <member name="P:Godot.TileMap.CellYSort">
             <summary>
-            <para>If <c>true</c>, the TileMap's children will be drawn in order of their Y coordinate.</para>
+            <para>If <c>true</c>, the TileMap's direct children will be drawn in order of their Y coordinate.</para>
             </summary>
         </member>
         <member name="P:Godot.TileMap.CompatibilityMode">
@@ -38379,12 +38507,19 @@
         </member>
         <member name="M:Godot.Tree.GetEdited">
             <summary>
-            <para>Returns the currently edited item. This is only available for custom cell mode.</para>
+            <para>Returns the currently edited item. Can be used with <c>item_edited</c> to get the item that was modified.</para>
+            <para><code>
+            func _ready():
+                $Tree.item_edited.connect(on_Tree_item_edited)
+            
+            func on_Tree_item_edited():
+                print($Tree.get_edited()) # This item just got edited (e.g. checked).
+            </code></para>
             </summary>
         </member>
         <member name="M:Godot.Tree.GetEditedColumn">
             <summary>
-            <para>Returns the column for the currently edited item. This is only available for custom cell mode.</para>
+            <para>Returns the column for the currently edited item.</para>
             </summary>
         </member>
         <member name="M:Godot.Tree.GetCustomPopupRect">
@@ -40069,6 +40204,12 @@
         <member name="P:Godot.Viewport.Fxaa">
             <summary>
             <para>Enables fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.</para>
+            </summary>
+        </member>
+        <member name="P:Godot.Viewport.Debanding">
+            <summary>
+            <para>If <c>true</c>, uses a fast post-processing filter to make banding significantly less visible. In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.</para>
+            <para>Note: Only available on the GLES3 backend. <see cref="P:Godot.Viewport.Hdr"/> must also be <c>true</c> for debanding to be effective.</para>
             </summary>
         </member>
         <member name="P:Godot.Viewport.Hdr">
@@ -43920,6 +44061,12 @@
             <para>Enables fast approximate antialiasing for this viewport. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.</para>
             </summary>
         </member>
+        <member name="M:Godot.VisualServer.ViewportSetUseDebanding(Godot.RID,System.Boolean)">
+            <summary>
+            <para>If <c>true</c>, uses a fast post-processing filter to make banding significantly less visible. In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.</para>
+            <para>Note: Only available on the GLES3 backend. <see cref="P:Godot.Viewport.Hdr"/> must also be <c>true</c> for debanding to be effective.</para>
+            </summary>
+        </member>
         <member name="M:Godot.VisualServer.ViewportSetHdr(Godot.RID,System.Boolean)">
             <summary>
             <para>If <c>true</c>, the viewport renders to hdr.</para>
@@ -46537,7 +46684,7 @@
         </member>
         <member name="P:Godot.World.DirectSpaceState">
             <summary>
-            <para>Direct access to the world's physics 3D space state. Used for querying current and potential collisions. Must only be accessed from within <c>_physics_process(delta)</c>.</para>
+            <para>Direct access to the world's physics 3D space state. Used for querying current and potential collisions.</para>
             </summary>
         </member>
         <member name="T:Godot.World2D">
@@ -46557,7 +46704,7 @@
         </member>
         <member name="P:Godot.World2D.DirectSpaceState">
             <summary>
-            <para>Direct access to the world's physics 2D space state. Used for querying current and potential collisions. Must only be accessed from the main thread within <c>_physics_process(delta)</c>.</para>
+            <para>Direct access to the world's physics 2D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to <c>_physics_process(delta)</c> in the main thread.</para>
             </summary>
         </member>
         <member name="T:Godot.WorldEnvironment">

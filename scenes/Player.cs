@@ -8,7 +8,7 @@ public class Player : KinematicBody
     // private int a = 2;
     // private string b = "text";
     [Signal]
-    public delegate void walk();
+    public delegate void Walk();
 private int speed=10;
     private float HAcceleration = 10;
     private float AirAcceleration = 1;
@@ -26,7 +26,8 @@ private int speed=10;
     private float distance = 0;
     private eSound jumpsound;
     private eInstance jumpinstance;
-    // Called when the node enters the scene tree for the first time.
+    float angle;
+        // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         Head = GetNode<Spatial>("Head");
@@ -94,18 +95,20 @@ if(Input.IsActionPressed("MoveLeft"))
         Movement.x = HVelocity.x + GravityVec.x;
         Movement.y = GravityVec.y;
         MoveAndSlide(Movement, Vector3.Up);
-        distance += Movement.Length();
+        distance += Direction.Length();
         if(IsOnFloor()&&GroundCheck.IsColliding())
         {
             if(distance>=30)
             {
                 EmitSignal("Walk");
+                distance = 0;
+                Console.WriteLine("Posicion actual: " + Transform.origin.x + ", " + Transform.origin.y + ", " + Transform.origin.z);
             }
         }
         Globals.engine.listener.x = Translation.x;
         Globals.engine.listener.y = Translation.y+Head.Translation.y;
         Globals.engine.listener.z = Translation.z;
-        Globals.engine.listener.rotation = (int)Rotation.y;
+        Globals.engine.listener.rotation =(int)Mathf.Rad2Deg(Rotation.y);
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
