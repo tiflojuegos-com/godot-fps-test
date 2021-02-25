@@ -16,13 +16,17 @@ public class desk : CSGCombiner
     {
         desksound = Globals.engine.loadSound("sounds/desk.ogg");
         surface = GetNode<CSGBox>("surface");
-        deskinstance = desksound.play3d(surface.Translation.x, surface.Translation.y, surface.Translation.z, loopMode.simpleLoop);
-        deskinstance.maxDistance = 100;
+        deskinstance = desksound.play3d(Transform.origin.x, Transform.origin.y, Transform.origin.z, loopMode.simpleLoop);
+        deskinstance.maxDistance = 50;
+        deskinstance.minDistance = 0.1f;
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(float delta)
+    {
+        //deskinstance.x =  surface.Transform.origin.x;
+//deskinstance.y = surface.Transform.origin.y;
+        //deskinstance.z = surface.Transform.origin.z;
+              }
+
 }

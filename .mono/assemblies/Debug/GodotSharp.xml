@@ -1515,7 +1515,8 @@
         </member>
         <member name="M:Godot.Node.SetProcessInternal(System.Boolean)">
             <summary>
-            <para>Enables or disabled internal processing for this node. Internal processing happens in isolation from the normal <see cref="M:Godot.Node._Process(System.Single)"/> calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or processing is disabled for scripting (<see cref="M:Godot.Node.SetProcess(System.Boolean)"/>). Only useful for advanced uses to manipulate built-in nodes' behaviour.</para>
+            <para>Enables or disabled internal processing for this node. Internal processing happens in isolation from the normal <see cref="M:Godot.Node._Process(System.Single)"/> calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or processing is disabled for scripting (<see cref="M:Godot.Node.SetProcess(System.Boolean)"/>). Only useful for advanced uses to manipulate built-in nodes' behavior.</para>
+            <para>Warning: Built-in Nodes rely on the internal processing for their own logic, so changing this value from your code may lead to unexpected behavior. Script access to this internal logic is provided for specific advanced uses, but is unsafe and not supported.</para>
             </summary>
         </member>
         <member name="M:Godot.Node.IsProcessingInternal">
@@ -1525,7 +1526,8 @@
         </member>
         <member name="M:Godot.Node.SetPhysicsProcessInternal(System.Boolean)">
             <summary>
-            <para>Enables or disables internal physics for this node. Internal physics processing happens in isolation from the normal <see cref="M:Godot.Node._PhysicsProcess(System.Single)"/> calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or physics processing is disabled for scripting (<see cref="M:Godot.Node.SetPhysicsProcess(System.Boolean)"/>). Only useful for advanced uses to manipulate built-in nodes' behaviour.</para>
+            <para>Enables or disables internal physics for this node. Internal physics processing happens in isolation from the normal <see cref="M:Godot.Node._PhysicsProcess(System.Single)"/> calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or physics processing is disabled for scripting (<see cref="M:Godot.Node.SetPhysicsProcess(System.Boolean)"/>). Only useful for advanced uses to manipulate built-in nodes' behavior.</para>
+            <para>Warning: Built-in Nodes rely on the internal processing for their own logic, so changing this value from your code may lead to unexpected behavior. Script access to this internal logic is provided for specific advanced uses, but is unsafe and not supported.</para>
             </summary>
         </member>
         <member name="M:Godot.Node.IsPhysicsProcessingInternal">
@@ -11052,6 +11054,26 @@
             <para>Returns the length of the audio stream in seconds.</para>
             </summary>
         </member>
+        <member name="T:Godot.AudioStreamMP3">
+            <summary>
+            <para>MP3 audio stream driver.</para>
+            </summary>
+        </member>
+        <member name="P:Godot.AudioStreamMP3.Data">
+            <summary>
+            <para>Contains the audio data in bytes.</para>
+            </summary>
+        </member>
+        <member name="P:Godot.AudioStreamMP3.Loop">
+            <summary>
+            <para>If <c>true</c>, the stream will automatically loop when it reaches the end.</para>
+            </summary>
+        </member>
+        <member name="P:Godot.AudioStreamMP3.LoopOffset">
+            <summary>
+            <para>Time in seconds at which the stream starts after being looped.</para>
+            </summary>
+        </member>
         <member name="T:Godot.AudioStreamOGGVorbis">
             <summary>
             <para>OGG Vorbis audio stream driver.</para>
@@ -11244,7 +11266,7 @@
         </member>
         <member name="T:Godot.AudioStreamPlayer3D">
             <summary>
-            <para>Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space.</para>
+            <para>Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space. For greater realism, a low-pass filter is automatically applied to distant sounds. This can be disabled by setting <see cref="P:Godot.AudioStreamPlayer3D.AttenuationFilterCutoffHz"/> to <c>20500</c>.</para>
             <para>By default, audio is heard from the camera position. This can be changed by adding a <see cref="T:Godot.Listener"/> node to the scene and enabling it by calling <see cref="M:Godot.Listener.MakeCurrent"/> on it.</para>
             </summary>
         </member>
@@ -11265,17 +11287,17 @@
         </member>
         <member name="F:Godot.AudioStreamPlayer3D.AttenuationModelEnum.Disabled">
             <summary>
-            <para>No dampening of loudness according to distance.</para>
+            <para>No dampening of loudness according to distance. The sound will still be heard positionally, unlike an <see cref="T:Godot.AudioStreamPlayer"/>.</para>
             </summary>
         </member>
         <member name="F:Godot.AudioStreamPlayer3D.OutOfRangeModeEnum.Mix">
             <summary>
-            <para>Mix this audio in, even when it's out of range.</para>
+            <para>Mix this audio in, even when it's out of range. This increases CPU usage, but keeps the sound playing at the correct position if the camera leaves and enters the <see cref="T:Godot.AudioStreamPlayer3D"/>'s <see cref="P:Godot.AudioStreamPlayer3D.MaxDistance"/> radius.</para>
             </summary>
         </member>
         <member name="F:Godot.AudioStreamPlayer3D.OutOfRangeModeEnum.Pause">
             <summary>
-            <para>Pause this audio when it gets out of range.</para>
+            <para>Pause this audio when it gets out of range. This decreases CPU usage, but will cause the sound to restart if the camera leaves and enters the <see cref="T:Godot.AudioStreamPlayer3D"/>'s <see cref="P:Godot.AudioStreamPlayer3D.MaxDistance"/> radius.</para>
             </summary>
         </member>
         <member name="F:Godot.AudioStreamPlayer3D.DopplerTrackingEnum.Disabled">
@@ -11295,7 +11317,7 @@
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.Stream">
             <summary>
-            <para>The <see cref="T:Godot.AudioStream"/> object to be played.</para>
+            <para>The <see cref="T:Godot.AudioStream"/> resource to be played.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.AttenuationModel">
@@ -11305,17 +11327,17 @@
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.UnitDb">
             <summary>
-            <para>Base sound level unaffected by dampening, in dB.</para>
+            <para>The base sound level unaffected by dampening, in decibels.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.UnitSize">
             <summary>
-            <para>Factor for the attenuation effect.</para>
+            <para>The factor for the attenuation effect. Higher values make the sound audible over a larger distance.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.MaxDb">
             <summary>
-            <para>Sets the absolute maximum of the soundlevel, in dB.</para>
+            <para>Sets the absolute maximum of the soundlevel, in decibels.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.PitchScale">
@@ -11330,12 +11352,12 @@
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.Autoplay">
             <summary>
-            <para>If <c>true</c>, audio plays when added to scene tree.</para>
+            <para>If <c>true</c>, audio plays when the AudioStreamPlayer3D node is added to scene tree.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.StreamPaused">
             <summary>
-            <para>If <c>true</c>, the playback is paused. You can resume it by setting <c>stream_paused</c> to <c>false</c>.</para>
+            <para>If <c>true</c>, the playback is paused. You can resume it by setting <see cref="P:Godot.AudioStreamPlayer3D.StreamPaused"/> to <c>false</c>.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.MaxDistance">
@@ -11350,7 +11372,7 @@
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.Bus">
             <summary>
-            <para>Bus on which this audio is playing.</para>
+            <para>The bus on which this audio is playing.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.AreaMask">
@@ -11370,17 +11392,17 @@
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.EmissionAngleFilterAttenuationDb">
             <summary>
-            <para>Dampens audio if camera is outside of <see cref="P:Godot.AudioStreamPlayer3D.EmissionAngleDegrees"/> and <see cref="P:Godot.AudioStreamPlayer3D.EmissionAngleEnabled"/> is set by this factor, in dB.</para>
+            <para>Dampens audio if camera is outside of <see cref="P:Godot.AudioStreamPlayer3D.EmissionAngleDegrees"/> and <see cref="P:Godot.AudioStreamPlayer3D.EmissionAngleEnabled"/> is set by this factor, in decibels.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.AttenuationFilterCutoffHz">
             <summary>
-            <para>Dampens audio above this frequency, in Hz.</para>
+            <para>Dampens audio using a low-pass filter above this frequency, in Hz. To disable the dampening effect entirely, set this to <c>20500</c> as this frequency is above the human hearing limit.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.AttenuationFilterDb">
             <summary>
-            <para>Amount how much the filter affects the loudness, in dB.</para>
+            <para>Amount how much the filter affects the loudness, in decibels.</para>
             </summary>
         </member>
         <member name="P:Godot.AudioStreamPlayer3D.DopplerTracking">
@@ -16867,7 +16889,7 @@
         </member>
         <member name="M:Godot.Curve3D.InterpolateBaked(System.Single,System.Boolean)">
             <summary>
-            <para>Returns a point within the curve at position <c>offset</c>, where <c>offset</c> is measured as a pixel distance along the curve.</para>
+            <para>Returns a point within the curve at position <c>offset</c>, where <c>offset</c> is measured as a distance in 3D units along the curve.</para>
             <para>To do that, it finds the two cached points where the <c>offset</c> lies between, then interpolates the values. This interpolation is cubic if <c>cubic</c> is set to <c>true</c>, or linear if set to <c>false</c>.</para>
             <para>Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).</para>
             </summary>
@@ -21339,32 +21361,32 @@
         <member name="M:Godot.Input.VibrateHandheld(System.Int32)">
             <summary>
             <para>Vibrate Android and iOS devices.</para>
-            <para>Note: It needs VIBRATE permission for Android at export settings. iOS does not support duration.</para>
+            <para>Note: It needs <c>VIBRATE</c> permission for Android at export settings. iOS does not support duration.</para>
             </summary>
         </member>
         <member name="M:Godot.Input.GetGravity">
             <summary>
-            <para>Returns the gravity of the device's accelerometer, if the device has one. Otherwise, the method returns .</para>
+            <para>Returns the gravity of the device's accelerometer sensor, if the device has one. Otherwise, the method returns .</para>
             <para>Note: This method only works on Android and iOS. On other platforms, it always returns .</para>
             </summary>
         </member>
         <member name="M:Godot.Input.GetAccelerometer">
             <summary>
-            <para>Returns the acceleration of the device's accelerometer, if the device has one. Otherwise, the method returns .</para>
+            <para>Returns the acceleration of the device's accelerometer sensor, if the device has one. Otherwise, the method returns .</para>
             <para>Note this method returns an empty <see cref="T:Godot.Vector3"/> when running from the editor even when your device has an accelerometer. You must export your project to a supported device to read values from the accelerometer.</para>
             <para>Note: This method only works on iOS, Android, and UWP. On other platforms, it always returns .</para>
             </summary>
         </member>
         <member name="M:Godot.Input.GetMagnetometer">
             <summary>
-            <para>Returns the the magnetic field strength in micro-Tesla for all axes of the device's magnetometer, if the device has one. Otherwise, the method returns .</para>
-            <para>Note: This method only works on Android and UWP. On other platforms, it always returns .</para>
+            <para>Returns the the magnetic field strength in micro-Tesla for all axes of the device's magnetometer sensor, if the device has one. Otherwise, the method returns .</para>
+            <para>Note: This method only works on Android, iOS and UWP. On other platforms, it always returns .</para>
             </summary>
         </member>
         <member name="M:Godot.Input.GetGyroscope">
             <summary>
-            <para>Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope, if the device has one. Otherwise, the method returns .</para>
-            <para>Note: This method only works on Android. On other platforms, it always returns .</para>
+            <para>Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope sensor, if the device has one. Otherwise, the method returns .</para>
+            <para>Note: This method only works on Android and iOS. On other platforms, it always returns .</para>
             </summary>
         </member>
         <member name="M:Godot.Input.GetLastMouseSpeed">
@@ -24772,9 +24794,9 @@
             <para>The peer object to handle the RPC system (effectively enabling networking when set). Depending on the peer itself, the MultiplayerAPI will become a network server (check with <see cref="M:Godot.MultiplayerAPI.IsNetworkServer"/>) and will set root node's network mode to master, or it will become a regular peer with root node set to puppet. All child nodes are set to inherit the network mode by default. Handling of networking-related events (connection, disconnection, new clients) is done by connecting to MultiplayerAPI's signals.</para>
             </summary>
         </member>
-        <member name="M:Godot.MultiplayerAPI.SetRootNode(Godot.Node)">
+        <member name="P:Godot.MultiplayerAPI.RootNode">
             <summary>
-            <para>Sets the base root node to use for RPCs. Instead of an absolute path, a relative path will be used to find the node upon which the RPC should be executed.</para>
+            <para>The root node to use for RPCs. Instead of an absolute path, a relative path will be used to find the node upon which the RPC should be executed.</para>
             <para>This effectively allows to have different branches of the scene tree to be managed by different MultiplayerAPI, allowing for example to run both client and server in the same scene.</para>
             </summary>
         </member>
@@ -25503,7 +25525,7 @@
         <member name="T:Godot.OmniLight">
             <summary>
             <para>An Omnidirectional light is a type of <see cref="T:Godot.Light"/> that emits light in all directions. The light is attenuated by distance and this attenuation can be configured by changing its energy, radius, and attenuation parameters.</para>
-            <para>Note: Due to current rendering engine limitations, only 8 OmniLights may affect a single mesh resource at once. Consider splitting your level into several meshes to decrease the likelihood that more than 8 lights will affect the same mesh resource. Splitting the level mesh will also improve frustum culling effectiveness, leading to greater performance.</para>
+            <para>Note: By default, only 32 OmniLights may affect a single mesh resource at once. Consider splitting your level into several meshes to decrease the likelihood that more than 32 lights will affect the same mesh resource. Splitting the level mesh will also improve frustum culling effectiveness, leading to greater performance. If you need to use more lights per mesh, you can increase  at the cost of shader compilation times.</para>
             </summary>
         </member>
         <member name="F:Godot.OmniLight.ShadowMode.DualParaboloid">
@@ -30259,6 +30281,7 @@
         <member name="M:Godot.PopupMenu.AddSeparator(System.String)">
             <summary>
             <para>Adds a separator between items. Separators also occupy an index.</para>
+            <para>A <c>label</c> can optionally be provided, which will appear at the center of the separator.</para>
             </summary>
         </member>
         <member name="M:Godot.PopupMenu.Clear">
@@ -30551,12 +30574,26 @@
         </member>
         <member name="M:Godot.ProjectSettings.LocalizePath(System.String)">
             <summary>
-            <para>Convert a path to a localized path (<c>res://</c> path).</para>
+            <para>Returns the localized path (starting with <c>res://</c>) corresponding to the absolute, native OS <c>path</c>. See also <see cref="M:Godot.ProjectSettings.GlobalizePath(System.String)"/>.</para>
             </summary>
         </member>
         <member name="M:Godot.ProjectSettings.GlobalizePath(System.String)">
             <summary>
-            <para>Converts a localized path (<c>res://</c>) to a full native OS path.</para>
+            <para>Returns the absolute, native OS path corresponding to the localized <c>path</c> (starting with <c>res://</c> or <c>user://</c>). The returned path will vary depending on the operating system and user preferences. See <a href="https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html">File paths in Godot projects</a> to see what those paths convert to. See also <see cref="M:Godot.ProjectSettings.LocalizePath(System.String)"/>.</para>
+            <para>Note: <see cref="M:Godot.ProjectSettings.GlobalizePath(System.String)"/> with <c>res://</c> will not work in an exported project. Instead, prepend the executable's base directory to the path when running from an exported project:</para>
+            <para><code>
+            var path = ""
+            if OS.has_feature("editor"):
+                # Running from an editor binary.
+                # `path` will contain the absolute path to `hello.txt` located in the project root.
+                path = ProjectSettings.globalize_path("res://hello.txt")
+            else:
+                # Running from an exported project.
+                # `path` will contain the absolute path to `hello.txt` next to the executable.
+                # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
+                # but is close enough in spirit.
+                path = OS.get_executable_path().get_base_dir().plus_file("hello.txt")
+            </code></para>
             </summary>
         </member>
         <member name="M:Godot.ProjectSettings.Save">
@@ -30976,6 +31013,7 @@
             <para>Base class for any object that keeps a reference count. <see cref="T:Godot.Resource"/> and many other helper objects inherit this class.</para>
             <para>Unlike <see cref="T:Godot.Object"/>s, References keep an internal reference counter so that they are automatically released when no longer in use, and only then. References therefore do not need to be freed manually with <see cref="M:Godot.Object.Free"/>.</para>
             <para>In the vast majority of use cases, instantiating and using <see cref="T:Godot.Reference"/>-derived types is all you need to do. The methods provided in this class are only for advanced users, and can cause issues if misused.</para>
+            <para>Note: In C#, references will not be freed instantly after they are no longer in use. Instead, garbage collection will run periodically and will free references that are no longer in use. This means that unused references will linger on for a while before being removed.</para>
             </summary>
         </member>
         <member name="M:Godot.Reference.InitRef">
@@ -31304,6 +31342,7 @@
         <member name="T:Godot.Resource">
             <summary>
             <para>Resource is the base class for all Godot-specific resource types, serving primarily as data containers. Unlike <see cref="T:Godot.Object"/>s, they are reference-counted and freed when no longer in use. They are also cached once loaded from disk, so that any further attempts to load a resource from a given path will return the same reference (all this in contrast to a <see cref="T:Godot.Node"/>, which is not reference-counted and can be instanced from disk as many times as desired). Resources can be saved externally on disk or bundled into another object, such as a <see cref="T:Godot.Node"/> or another resource.</para>
+            <para>Note: In C#, resources will not be freed instantly after they are no longer in use. Instead, garbage collection will run periodically and will free resources that are no longer in use. This means that unused resources will linger on for a while before being removed.</para>
             </summary>
         </member>
         <member name="P:Godot.Resource.ResourceLocalToScene">
@@ -32503,7 +32542,7 @@
         </member>
         <member name="M:Godot.SceneTree.Quit(System.Int32)">
             <summary>
-            <para>Quits the application. A process <c>exit_code</c> can optionally be passed as an argument. If this argument is <c>0</c> or greater, it will override the <see cref="P:Godot.OS.ExitCode"/> defined before quitting the application.</para>
+            <para>Quits the application at the end of the current iteration. A process <c>exit_code</c> can optionally be passed as an argument. If this argument is <c>0</c> or greater, it will override the <see cref="P:Godot.OS.ExitCode"/> defined before quitting the application.</para>
             </summary>
         </member>
         <member name="M:Godot.SceneTree.SetScreenStretch(Godot.SceneTree.StretchMode,Godot.SceneTree.StretchAspect,Godot.Vector2,System.Single)">
@@ -34767,7 +34806,7 @@
         <member name="T:Godot.SpotLight">
             <summary>
             <para>A Spotlight is a type of <see cref="T:Godot.Light"/> node that emits lights in a specific direction, in the shape of a cone. The light is attenuated through the distance. This attenuation can be configured by changing the energy, radius and attenuation parameters of <see cref="T:Godot.Light"/>.</para>
-            <para>Note: Due to current rendering engine limitations, only 8 SpotLights may affect a single mesh resource at once. Consider splitting your level into several meshes to decrease the likelihood that more than 8 lights will affect the same mesh resource. Splitting the level mesh will also improve frustum culling effectiveness, leading to greater performance.</para>
+            <para>Note: By default, only 32 SpotLights may affect a single mesh resource at once. Consider splitting your level into several meshes to decrease the likelihood that more than 32 lights will affect the same mesh resource. Splitting the level mesh will also improve frustum culling effectiveness, leading to greater performance. If you need to use more lights per mesh, you can increase  at the cost of shader compilation times.</para>
             </summary>
         </member>
         <member name="P:Godot.SpotLight.SpotRange">
@@ -36181,6 +36220,11 @@
         <member name="P:Godot.TabContainer.TabsVisible">
             <summary>
             <para>If <c>true</c>, tabs are visible. If <c>false</c>, tabs' content and titles are hidden.</para>
+            </summary>
+        </member>
+        <member name="P:Godot.TabContainer.AllTabsInFront">
+            <summary>
+            <para>If <c>true</c>, all tabs are drawn in front of the panel. If <c>false</c>, inactive tabs are drawn behind the panel.</para>
             </summary>
         </member>
         <member name="P:Godot.TabContainer.DragToRearrangeEnabled">
@@ -39834,6 +39878,7 @@
             <summary>
             <para>Control node for playing video streams using <see cref="T:Godot.VideoStream"/> resources.</para>
             <para>Supported video formats are <a href="https://www.webmproject.org/">WebM</a> (<c>.webm</c>, <see cref="T:Godot.VideoStreamWebm"/>), <a href="https://www.theora.org/">Ogg Theora</a> (<c>.ogv</c>, <see cref="T:Godot.VideoStreamTheora"/>), and any format exposed via a GDNative plugin using <see cref="T:Godot.VideoStreamGDNative"/>.</para>
+            <para>Note: Due to a bug, VideoPlayer does not support localization remapping yet.</para>
             </summary>
         </member>
         <member name="P:Godot.VideoPlayer.AudioTrack">
@@ -39953,6 +39998,7 @@
         <member name="T:Godot.VideoStreamWebm">
             <summary>
             <para><see cref="T:Godot.VideoStream"/> resource handling the <a href="https://www.webmproject.org/">WebM</a> video format with <c>.webm</c> extension. Both the VP8 and VP9 codecs are supported. The VP8 and VP9 codecs are more efficient than <see cref="T:Godot.VideoStreamTheora"/>, but they require more CPU resources to decode (especially VP9). Both the VP8 and VP9 codecs are decoded on the CPU.</para>
+            <para>Note: Alpha channel (also known as transparency) is not supported. The video will always appear to have a black background, even if it originally contains an alpha channel.</para>
             <para>Note: There are known bugs and performance issues with WebM video playback in Godot. If you run into problems, try using the Ogg Theora format instead: <see cref="T:Godot.VideoStreamTheora"/></para>
             </summary>
         </member>
@@ -41481,7 +41527,7 @@
         </member>
         <member name="T:Godot.VisualScriptLists">
             <summary>
-            <para>A Visual Script virtual class that defines the shape and the default behaviour of the nodes that have to be in-graph editable nodes.</para>
+            <para>A Visual Script virtual class that defines the shape and the default behavior of the nodes that have to be in-graph editable nodes.</para>
             </summary>
         </member>
         <member name="T:Godot.VisualScriptLocalVar">

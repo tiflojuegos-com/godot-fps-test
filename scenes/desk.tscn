@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/desk.cs" type="Script" id=1]
+
+[node name="desk" type="CSGCombiner"]
+script = ExtResource( 1 )
+
+[node name="surface" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+width = 4.0
+depth = 4.0
+__meta__ = {
+"_editor_description_": "			"
+}
+
+[node name="leg1" type="CSGBox" parent="surface"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+width = 1.0
+depth = 1.0
+
+[node name="leg2" type="CSGBox" parent="surface"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -2, 0 )
+width = 1.0
+depth = 1.0
+
+[node name="leg3" type="CSGBox" parent="surface"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -2, -4 )
+width = 1.0
+depth = 1.0
+
+[node name="leg4" type="CSGBox" parent="surface"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -4 )
+visible = false
+width = 1.0
+depth = 1.0

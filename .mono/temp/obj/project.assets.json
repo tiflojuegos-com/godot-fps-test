@@ -86,7 +86,7 @@
       "projectName": "UnnamedProject",
       "projectPath": "D:\\games etc\\vs\\fps test\\UnnamedProject.csproj",
       "packagesPath": "C:\\Users\\ali-b\\.nuget\\packages\\",
-      "outputPath": "D:\\GAMES ETC\\VS\\FPS TEST\\.mono\\temp\\obj\\",
+      "outputPath": "D:\\games etc\\vs\\fps test\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -105,6 +105,7 @@
       },
       "frameworks": {
         "net472": {
+          "targetAlias": "net472",
           "projectReferences": {}
         }
       },
@@ -116,13 +117,14 @@
     },
     "frameworks": {
       "net472": {
+        "targetAlias": "net472",
         "dependencies": {
           "GodotTools.IdeMessaging": {
             "target": "Package",
             "version": "[1.1.1, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

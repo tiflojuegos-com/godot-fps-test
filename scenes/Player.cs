@@ -9,6 +9,8 @@ public class Player : KinematicBody
     // private string b = "text";
     [Signal]
     public delegate void Walk();
+    [Signal]
+    public delegate void wallhit();
 private int speed=10;
     private float HAcceleration = 10;
     private float AirAcceleration = 1;
@@ -26,15 +28,23 @@ private int speed=10;
     private float distance = 0;
     private eSound jumpsound;
     private eInstance jumpinstance;
-    float angle;
+    private eSound wallsound;
+    private eInstance wallinstance;
+    private bool isMoving=true;
+    private bool walltrigger;
+    private Timer collisionTimer;
+
         // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         Head = GetNode<Spatial>("Head");
         GroundCheck = GetNode<RayCast>("GroundCheck");
+        collisionTimer = GetNode<Timer>("walltimer");
         jumpsound = Globals.engine.loadSound("sounds/duck.ogg");
+        wallsound = Globals.engine.loadSound("sounds/wall.ogg");
         Input.SetMouseMode(Input.MouseMode.Captured);
     }
+
 
     public override void _Input(InputEvent @event)
     {
@@ -95,20 +105,66 @@ if(Input.IsActionPressed("MoveLeft"))
         Movement.x = HVelocity.x + GravityVec.x;
         Movement.y = GravityVec.y;
         MoveAndSlide(Movement, Vector3.Up);
-        distance += Direction.Length();
-        if(IsOnFloor()&&GroundCheck.IsColliding())
+    distance += HVelocity.Length();
+    if(IsOnFloor()&&GroundCheck.IsColliding()&&!IsOnWall())
+    {
+if(isMoving==true&& HVelocity.Length() == 20)
         {
-            if(distance>=30)
+            EmitSignal("Walk");
+}
+else if (distance>=300)
+        {
+            EmitSignal("Walk");
+            distance = 0;
+            Console.WriteLine("Posicion z actual: " + Transform.origin.z);
+        }
+    }
+        Globals.engine.listener.x = Transform.origin.x;
+        Globals.engine.listener.y = Transform.origin.y+Head.Transform.origin.y;
+        Globals.engine.listener.z = Transform.origin.z;
+        Globals.engine.listener.velX = HVelocity.x;
+        Globals.engine.listener.velY = Movement.y;
+        Globals.engine.listener.velZ = HVelocity.z;
+                CheckListenerRotation();
+        CheckIfIsColliding();
+    }
+
+    public void CheckListenerRotation()
+    {
+        if(Mathf.Rad2Deg(Rotation.y)<=0)
+        {
+            Globals.engine.listener.rotation = (int)Mathf.Rad2Deg(Rotation.y)+180;
+        }
+else 
+        {
+            Globals.engine.listener.rotation = 180+  (int)Mathf.Rad2Deg(Rotation.y);
+        }
+    }
+
+public void CheckIfIsColliding()
+    {
+if(IsOnWall()==true||IsOnFloor()==true&&IsOnWall()==true)
+        {
+if(walltrigger==true)
             {
-                EmitSignal("Walk");
-                distance = 0;
-                Console.WriteLine("Posicion actual: " + Transform.origin.x + ", " + Transform.origin.y + ", " + Transform.origin.z);
+                collisionTimer.Start();
+                EmitSignal("wallhit");
+                walltrigger = false;
             }
         }
-        Globals.engine.listener.x = Translation.x;
-        Globals.engine.listener.y = Translation.y+Head.Translation.y;
-        Globals.engine.listener.z = Translation.z;
-        Globals.engine.listener.rotation =(int)Mathf.Rad2Deg(Rotation.y);
+else if(IsOnFloor()==true||!IsOnFloor()==true)
+        {
+            walltrigger = true;
+        }
+    }
+
+    public void onWallhit()
+    {
+        wallinstance = wallsound.play();
+        if(wallinstance.playing==true&&collisionTimer.IsStopped())
+        {
+            wallinstance.stop();
+        }
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.

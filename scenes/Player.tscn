@@ -59,3 +59,10 @@ visible = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
 enabled = true
 cast_to = Vector3( 0, -1.5, 0 )
+
+[node name="walltimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+
+[connection signal="wallhit" from="." to="." method="onWallhit"]

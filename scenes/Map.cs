@@ -15,9 +15,9 @@ public class Map : Spatial
     {
     }
 
-    public void OnWalk()
+    public void playstep()
     {
-        stepsound = Globals.engine.loadSound("sounds/carpet/" + random.Next(0, 9) + ".ogg");
+        stepsound = Globals.engine.loadSound("sounds/carpet/" + random.Next(0, 9-1) + ".ogg");
         stepinstance = stepsound.play(0, loopMode.noLoop);
     }
 
